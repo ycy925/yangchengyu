@@ -147,15 +147,15 @@ function initForm() {
     if (!form) return;
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
         const btn = form.querySelector('.btn-submit');
         const originalHTML = btn.innerHTML;
 
-        // Simulate sending
+        // Show sending state
         btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发送中...';
         btn.disabled = true;
 
+        // FormSubmit will handle the actual POST
+        // After ~2 seconds, show success (FormSubmit redirects quickly)
         setTimeout(() => {
             btn.innerHTML = '<i class="fas fa-check"></i> 发送成功！';
             btn.style.background = '#2ecc71';
@@ -165,8 +165,8 @@ function initForm() {
                 btn.style.background = '';
                 btn.disabled = false;
                 form.reset();
-            }, 2500);
-        }, 1500);
+            }, 3000);
+        }, 2000);
     });
 }
 
